@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/Background1 - copia.png" type="Texture" id=1]
+[ext_resource path="res://Splash_CanvasLayer.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/music/Intro.ogg" type="AudioStream" id=4]
+[ext_resource path="res://admob-lib/admob.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 38
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 31
+font_data = ExtResource( 3 )
+
+[node name="Splash_CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 596.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start_Button" type="Button" parent="."]
+margin_left = 457.887
+margin_top = 481.485
+margin_right = 576.887
+margin_bottom = 532.485
+custom_fonts/font = SubResource( 1 )
+text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 391.846
+margin_top = 107.929
+margin_right = 695.846
+margin_bottom = 145.929
+custom_fonts/font = SubResource( 2 )
+text = "Press start to play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Intro_AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="Admob" type="Node" parent="."]
+script = ExtResource( 5 )
+is_real = true
+banner_id = "ca-app-pub-4602579253156881/9213025637"
+[connection signal="start_game" from="." to="." method="_on_Splash_CanvasLayer_start_game"]
+[connection signal="button_up" from="Start_Button" to="." method="_on_Start_Button_button_up"]
